@@ -1,9 +1,9 @@
 package tests;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import projectCar.CarService; // Импорт соответствует структуре папок
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import projectCar.CarService;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Set;
 public class CarServiceTest {
     private CarService service;
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException {
         service = new CarService("Cars.txt"); // Убедитесь, что файл "Cars.txt" существует в корне проекта
     }
@@ -21,22 +21,22 @@ public class CarServiceTest {
     @Test
     public void testGetDistinctBrands() {
         Set<String> brands = service.getDistinctBrands();
-        Assert.assertNotNull(brands);
-        Assert.assertFalse(brands.isEmpty());
+        Assertions.assertNotNull(brands);
+        Assertions.assertFalse(brands.isEmpty());
     }
 
     @Test
     public void testGetModelsForBrand() {
         List<String> toyotaModels = service.getModelsForBrand("Toyota");
-        Assert.assertNotNull(toyotaModels);
-        Assert.assertFalse(toyotaModels.isEmpty());
-        Assert.assertTrue(toyotaModels.contains("Camry"));
+        Assertions.assertNotNull(toyotaModels);
+        Assertions.assertFalse(toyotaModels.isEmpty());
+        Assertions.assertTrue(toyotaModels.contains("Camry"));
     }
 
     @Test
     public void testGetBrandCounts() {
         Map<String, Integer> brandCountMap = service.getBrandCounts();
-        Assert.assertNotNull(brandCountMap);
-        Assert.assertFalse(brandCountMap.isEmpty());
+        Assertions.assertNotNull(brandCountMap);
+        Assertions.assertFalse(brandCountMap.isEmpty());
     }
 }
